@@ -2,13 +2,15 @@
   "name": "open-in-typora",
   "version": "0.0.0",
   "description": "It does exactly what it says on the tin: open your markdown files in Typora.",
-  "keywords": ["typora", "markdown", "editor"],
+  "keywords": [
+    "editor",
+    "markdown",
+    "typora"
+  ],
   "repository": "https://github.com/atom/open-in-typora",
   "license": "MIT",
   "main": "./lib/open-in-typora",
-  "dependencies": {
-    "opn": "^5.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",

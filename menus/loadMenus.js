@@ -8,7 +8,7 @@ const isMarkdown = (filename) => {
 };
 
 const shouldDisplay = (e) => {
-  const treeViewPath = e.target.dataset.path;
+  const treeViewPath = e.target.computedName;
   const textEditorDocumentTitle = e.view.document.title;
   if (isMarkdown(treeViewPath) || isMarkdown(textEditorDocumentTitle)) {
     return true;
@@ -28,7 +28,7 @@ const loadMenus = () => {
     '.tree-view .file': [
       {
         label: 'Open in Typora',
-        command: 'open-in-typora:open',
+        command: 'open-in-typora:open-tree-view',
         shouldDisplay,
       },
     ],
