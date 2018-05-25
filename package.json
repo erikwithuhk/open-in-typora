@@ -1,0 +1,18 @@
+{
+  "name": "open-in-typora",
+  "main": "./lib/open-in-typora",
+  "version": "0.0.0",
+  "description": "A short description of your package",
+  "keywords": [
+  ],
+  "activationCommands": {
+    "atom-workspace": "open-in-typora:toggle"
+  },
+  "repository": "https://github.com/atom/open-in-typora",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
