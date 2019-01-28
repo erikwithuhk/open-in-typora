@@ -1,5 +1,8 @@
 'use babel';
 
+/* eslint-env jasmine */
+/* global waitsForPromise */
+
 import OpenInTypora from '../lib/open-in-typora';
 
 // Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
@@ -8,65 +11,25 @@ import OpenInTypora from '../lib/open-in-typora';
 // or `fdescribe`). Remove the `f` to unfocus the block.
 
 describe('OpenInTypora', () => {
-  let workspaceElement, activationPromise;
+  let workspaceElement;
+  let activationPromise;
 
   beforeEach(() => {
+    spyOn(OpenInTypora, 'loadMenus');
     workspaceElement = atom.views.getView(atom.workspace);
     activationPromise = atom.packages.activatePackage('open-in-typora');
   });
 
-  describe('when the open-in-typora:toggle event is triggered', () => {
-    it('hides and shows the modal panel', () => {
-      // Before the activation event the view is not on the DOM, and no panel
-      // has been created
-      expect(workspaceElement.querySelector('.open-in-typora')).not.toExist();
-
-      // This is an activation event, triggering it will cause the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'open-in-typora:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
-
-      runs(() => {
-        expect(workspaceElement.querySelector('.open-in-typora')).toExist();
-
-        let openInTyporaElement = workspaceElement.querySelector('.open-in-typora');
-        expect(openInTyporaElement).toExist();
-
-        let openInTyporaPanel = atom.workspace.panelForItem(openInTyporaElement);
-        expect(openInTyporaPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'open-in-typora:toggle');
-        expect(openInTyporaPanel.isVisible()).toBe(false);
-      });
+  describe('.activate', () => {
+    it('instantiates a subscriptions property', () => {
+      expect().not.toBeNull();
     });
 
-    it('hides and shows the view', () => {
-      // This test shows you an integration test testing at the view level.
-
-      // Attaching the workspaceElement to the DOM is required to allow the
-      // `toBeVisible()` matchers to work. Anything testing visibility or focus
-      // requires that the workspaceElement is on the DOM. Tests that attach the
-      // workspaceElement to the DOM are generally slower than those off DOM.
-      jasmine.attachToDOM(workspaceElement);
-
-      expect(workspaceElement.querySelector('.open-in-typora')).not.toExist();
-
-      // This is an activation event, triggering it causes the package to be
-      // activated.
-      atom.commands.dispatch(workspaceElement, 'open-in-typora:toggle');
-
-      waitsForPromise(() => {
-        return activationPromise;
-      });
+    it('calls .loadMenus', () => {
+      waitsForPromise(() => activationPromise);
 
       runs(() => {
-        // Now we can test for view visibility
-        let openInTyporaElement = workspaceElement.querySelector('.open-in-typora');
-        expect(openInTyporaElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'open-in-typora:toggle');
-        expect(openInTyporaElement).not.toBeVisible();
+        expect(OpenInTypora.loadMenus).toHaveBeenCalled();
       });
     });
   });
