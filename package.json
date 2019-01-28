@@ -7,7 +7,7 @@
     "markdown",
     "typora"
   ],
-  "repository": "https://github.com/atom/open-in-typora",
+  "repository": "https://github.com/erikwithuhk/open-in-typora",
   "license": "MIT",
   "main": "./lib/open-in-typora",
   "devDependencies": {
